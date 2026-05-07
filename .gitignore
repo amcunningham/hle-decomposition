@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS / temp
+*.tmp
+*.bak
+
+# Local working files (keep tracked outputs in data/, not these intermediates)
+*.xlsx
+hleinputs.xlsx
+healthylifeexpectancyuk.xlsx
+hle_decomposition.html
