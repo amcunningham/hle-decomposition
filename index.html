@@ -138,6 +138,38 @@
     So the labour-market evidence is primarily a labour-market and benefits-system signal, not directly a health signal. It doesn&rsquo;t establish NI is unhealthier &mdash; it tells us that for any given level of ill-health, a higher fraction of NI&rsquo;s population is out of work because of it. NI may genuinely have more resilient self-rated health, with the labour-market and disability-benefit data describing a separate story about how the NI labour market and benefits system handle ill-health. HLE-at-birth and labour-market-derived disability indicators are measuring distinct things.
   </div>
 
+  <h2>How does the fall break down by deprivation?</h2>
+
+  <p>The 2-year UK headline obscures a much larger within-population gradient. In England, healthy life expectancy at birth is around 18&ndash;20 years lower in the most deprived decile than in the least deprived. Over 2013&ndash;15 to 2022&ndash;24 that gap widened by about a year for both sexes, and the fall has been concentrated in the more deprived deciles. The headline 2-year population fall is the trace of a distributional shift, not a uniform drift. Source: ONS <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthinequalities/datasets/healthylifeexpectancybynationalareadeprivationenglandtimeseries">Healthy life expectancy by national area deprivation</a> (England and Wales, 2022&ndash;24 update).</p>
+
+  <div class="controls">
+    <label>Sex</label>
+    <select id="deprSex"><option value="Persons">Persons (M+F avg)</option><option value="Male">Male</option><option value="Female">Female</option></select>
+    <label>Region</label>
+    <select id="deprRegion"><option value="England">England (10 deciles)</option><option value="Wales">Wales (5 quintiles)</option></select>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>HLE at birth by deprivation, 2013&ndash;15 vs 2022&ndash;24</h3>
+      <p style="font-size:13px; color:var(--muted); margin:0 0 6px">Decile/quintile 1 = most deprived. The gradient is much larger than the decade fall.</p>
+      <div class="chart-box"><canvas id="deprBars"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Change in HLE at birth, 2013&ndash;15 to 2022&ndash;24, by deprivation</h3>
+      <p style="font-size:13px; color:var(--muted); margin:0 0 6px">If the fall were uniform across the gradient, all bars would be the same height.</p>
+      <div class="chart-box"><canvas id="deprDelta"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card grid-full">
+    <h3>HLE at birth across periods, by deprivation</h3>
+    <p style="font-size:13px; color:var(--muted); margin:0 0 6px">All 10 three-year periods. Dark lines = more deprived; light lines = less deprived. Endpoint-vs-endpoint comparisons can hide bouncing &mdash; the trajectories show whether a decile's small fall reflects stability or a COVID-era trough recovering.</p>
+    <div class="chart-box short"><canvas id="deprTrajectory"></canvas></div>
+  </div>
+
+  <p>The fall hasn&rsquo;t been uniform. In England, the most deprived male decile fell 2.3 years; the least deprived 1.2. The most deprived female decile fell 4.0 years; the least deprived 2.8. The male gap widened from 18.3 to 19.4 years; the female gap from 19.1 to 20.3. So the headline &ldquo;UK HLE has fallen 2 years&rdquo; is true on average but misleading as a description &mdash; what&rsquo;s happened is closer to &ldquo;more of the population has slipped further down a steep gradient&rdquo;.</p>
+
   <h2>Why is self-rated health falling in younger working-age groups, and what should be done about it?</h2>
 
   <p>The Health Foundation&rsquo;s sister analysis (<a href="https://www.health.org.uk/reports-and-analysis/analysis/socioeconomic-disadvantage-and-self-reported-health">Tracey, Finch &amp; Bibby, March 2026</a>) looked specifically at the impact of deprivation on self-reported health, using Census-linked individual data from England. Working-age people in the most deprived areas had at least a 43% higher risk of moving out of good health over the decade than those in the least deprived areas, after accounting for demographic and socioeconomic differences. For females aged 20&ndash;24 in the most deprived areas the increased risk was 72%; for males 70%. Unemployment, economic inactivity, and living in private or social-rented housing were the other strong predictors. The drivers point at material and structural conditions.</p>
@@ -366,6 +398,134 @@ function renderAll(){ renderStats(); renderBand(); renderPrev(); renderTrend(); 
 countrySel.addEventListener('change', renderAll);
 sexSel.addEventListener('change', renderAll);
 renderAll();
+
+const DEPRIV = {"periods":["2013 to 2015","2014 to 2016","2015 to 2017","2016 to 2018","2017 to 2019","2018 to 2020","2019 to 2021","2020 to 2022","2021 to 2023","2022 to 2024"],"england_deciles":{"1":{"Male":[52.1,52.3,52.1,52.2,52.5,52.3,52,51.4,50.2,49.8],"Female":[52.2,51.9,52.2,51.8,51.7,51.7,51.4,50.3,48.8,48.2]},"2":{"Male":[56.2,56.3,57,56.7,56.4,56.8,56.2,55.9,54.8,54.1],"Female":[56,56.6,56.8,56.6,56.1,56.7,56.2,54.8,54.2,55.1]},"3":{"Male":[59.4,59.2,59.1,59.2,58.7,58.6,59.2,59,58.3,56.9],"Female":[59.5,59.5,59.4,59.4,59,59.5,60.3,59.1,57.4,56.9]},"4":{"Male":[61.7,62.1,61.9,61.8,62,61.3,60.5,60.3,60.7,60.1],"Female":[62.7,62.7,62.1,61.9,62,61.9,61.6,61.1,60.7,58.5]},"5":{"Male":[64,64.4,64,64.1,63.9,64.2,63.8,62.8,62.1,62.2],"Female":[64.7,64.1,64.5,65.4,64.3,64.5,64.3,62.9,62.9,61.8]},"6":{"Male":[65,64.9,64.7,64.6,64.4,65.2,64.8,64.4,63.8,62.8],"Female":[66.7,65.7,65.7,65.4,64.9,65.2,64.7,64.2,64.4,63.8]},"7":{"Male":[66.8,66.5,66.5,66.7,66.7,66.3,65.7,65.4,63.9,64],"Female":[67.1,66.8,66.9,67.1,67.1,67.5,67.2,66.2,64.6,64.9]},"8":{"Male":[67.5,67.4,67.7,67.7,67,67.6,67.1,67,66.1,65.5],"Female":[68.5,68.2,68,68.3,67.6,68.6,68.5,67.9,66.3,65.4]},"9":{"Male":[68.4,68.8,68.9,69.1,68.9,68.2,68.6,68.4,67.7,66.8],"Female":[69.1,68.7,68.7,69.1,68.2,69.4,69.1,68.6,67.6,67.4]},"10":{"Male":[70.4,70.2,70.3,70.3,70.4,70.3,70.4,70.2,70,69.2],"Female":[71.3,70.8,70.5,70.8,71.1,70.7,70.3,70,69.1,68.5]}},"wales_quintiles":{"1":{"Male":[52.2,51.5,51.7,52.4,53.6,54.2,53.8,51.7,52.2,49.7],"Female":[52.9,52.6,52,51.6,51.2,50.9,50.6,47.9,48.8,47.3]},"2":{"Male":[57.8,57.6,58,57.9,58.1,58.6,57.7,58.4,57.1,56.5],"Female":[58.2,58,58.1,59.1,59.5,59.6,58.2,57,55.9,54.3]},"3":{"Male":[62.3,62.9,62.9,62.1,62.2,61.4,61.8,61.8,62.2,60.9],"Female":[63.8,63.5,62.5,61.9,63.2,63.1,64.2,62.2,61,60.4]},"4":{"Male":[65.2,65.2,64.5,64.5,64.7,65.5,66.3,65.5,64.2,62.1],"Female":[66.6,66.9,66.1,65.2,64.9,65.5,66.4,65.9,64.8,63]},"5":{"Male":[68.5,68.8,68.7,68.8,67.8,67.6,68.1,68.1,67.5,67.8],"Female":[70.1,69.4,69.5,69.8,69.1,70,68.9,68,67.3,66.3]}}};
+const deprSexSel = document.getElementById('deprSex');
+const deprRegionSel = document.getElementById('deprRegion');
+let deprBarsChart = null, deprDeltaChart = null;
+
+function deprValues(region, sex) {
+  const key = region === 'England' ? 'england_deciles' : 'wales_quintiles';
+  const data = DEPRIV[key];
+  const decileKeys = Object.keys(data).map(Number).sort(function(a,b){return a-b;}).map(String);
+  const first = decileKeys.map(function(d) {
+    if (sex === 'Persons') return (data[d]['Male'][0] + data[d]['Female'][0]) / 2;
+    return data[d][sex][0];
+  });
+  const last = decileKeys.map(function(d) {
+    var lastIdx = data[d]['Male'].length - 1;
+    if (sex === 'Persons') return (data[d]['Male'][lastIdx] + data[d]['Female'][lastIdx]) / 2;
+    return data[d][sex][lastIdx];
+  });
+  const delta = first.map(function(v, i) { return Math.round((last[i] - v) * 100) / 100; });
+  return {deciles: decileKeys, firstHLE: first, lastHLE: last, delta: delta};
+}
+
+function renderDeprBars() {
+  var region = deprRegionSel.value, sex = deprSexSel.value;
+  var v = deprValues(region, sex);
+  var labels = v.deciles.map(function(d){return 'D' + d;});
+  if (deprBarsChart) deprBarsChart.destroy();
+  deprBarsChart = new Chart(document.getElementById('deprBars'), {
+    type: 'bar',
+    data: { labels: labels, datasets: [
+      {label: '2013–15', data: v.firstHLE, backgroundColor: '#3a6a4a', borderColor: '#3a6a4a'},
+      {label: '2022–24', data: v.lastHLE, backgroundColor: '#9c3a3a', borderColor: '#9c3a3a'}
+    ] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {position: 'top', labels: {font: {size: 11}, boxWidth: 14}},
+        tooltip: {callbacks: {label: function(ctx){ return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + ' yrs'; }}}
+      },
+      scales: {
+        y: {title: {display: true, text: 'HLE at birth (years)'}, ticks: {font: {size: 11}}},
+        x: {title: {display: true, text: 'Deprivation ' + (region === 'England' ? 'decile' : 'quintile') + ' (1 = most deprived)'}, ticks: {font: {size: 11}}}
+      }
+    }
+  });
+}
+
+function renderDeprDelta() {
+  var region = deprRegionSel.value, sex = deprSexSel.value;
+  var v = deprValues(region, sex);
+  var labels = v.deciles.map(function(d){return 'D' + d;});
+  var colors = v.delta.map(function(d){ return d < 0 ? '#9c3a3a' : '#3a6a4a'; });
+  if (deprDeltaChart) deprDeltaChart.destroy();
+  deprDeltaChart = new Chart(document.getElementById('deprDelta'), {
+    type: 'bar',
+    data: { labels: labels, datasets: [{label: 'Change in HLE', data: v.delta, backgroundColor: colors, borderColor: colors}] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {display: false},
+        tooltip: {callbacks: {label: function(ctx){ return ctx.parsed.y.toFixed(2) + ' yrs'; }}}
+      },
+      scales: {
+        y: {title: {display: true, text: 'Change in HLE (years)'}, ticks: {font: {size: 11}}},
+        x: {title: {display: true, text: 'Deprivation ' + (region === 'England' ? 'decile' : 'quintile') + ' (1 = most deprived)'}, ticks: {font: {size: 11}}}
+      }
+    }
+  });
+}
+
+function renderDeprTrajectory() {
+  var region = deprRegionSel.value, sex = deprSexSel.value;
+  var key = region === 'England' ? 'england_deciles' : 'wales_quintiles';
+  var data = DEPRIV[key];
+  var decileKeys = Object.keys(data).map(Number).sort(function(a,b){return a-b;}).map(String);
+  var maxDec = decileKeys.length;
+  // Sequential palette: dark red (most deprived) -> dark blue (least deprived)
+  var palette = function(d, total) {
+    // d is 1..total. Use HSL: hue from 0 (red) to 230 (blue), lightness varies for contrast
+    var t = (d - 1) / Math.max(1, total - 1);
+    var hue = Math.round(0 + t * 230);
+    var light = 35 + t * 15;
+    return 'hsl(' + hue + ', 55%, ' + light + '%)';
+  };
+  var datasets = decileKeys.map(function(d) {
+    var series;
+    if (sex === 'Persons') {
+      var m = data[d]['Male'], f = data[d]['Female'];
+      series = m.map(function(_, i) { return (m[i] + f[i]) / 2; });
+    } else {
+      series = data[d][sex];
+    }
+    var color = palette(parseInt(d), maxDec);
+    return {
+      label: 'D' + d + (parseInt(d) === 1 ? ' (most deprived)' : (parseInt(d) === maxDec ? ' (least deprived)' : '')),
+      data: series,
+      borderColor: color,
+      backgroundColor: color,
+      borderWidth: parseInt(d) === 1 || parseInt(d) === maxDec ? 2.5 : 1.5,
+      pointRadius: 2,
+      tension: 0.1,
+      fill: false
+    };
+  });
+  if (window.deprTrajectoryChart) window.deprTrajectoryChart.destroy();
+  window.deprTrajectoryChart = new Chart(document.getElementById('deprTrajectory'), {
+    type: 'line',
+    data: { labels: DEPRIV.periods, datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 14, usePointStyle: false } },
+        tooltip: { callbacks: { label: function(ctx) { return ctx.dataset.label.split(' ')[0] + ': ' + ctx.parsed.y.toFixed(1) + ' yrs'; } } }
+      },
+      scales: {
+        y: { title: { display: true, text: 'HLE at birth (years)' }, ticks: { font: { size: 11 } } },
+        x: { ticks: { font: { size: 10 }, autoSkip: false, maxRotation: 60, minRotation: 60 } }
+      }
+    }
+  });
+}
+
+function renderDepriv() { renderDeprBars(); renderDeprDelta(); renderDeprTrajectory(); }
+deprSexSel.addEventListener('change', renderDepriv);
+deprRegionSel.addEventListener('change', renderDepriv);
+renderDepriv();
+
 </script>
 </body>
 </html>

@@ -16,6 +16,7 @@ Charts in the dashboard:
 4. **HLE at birth across periods, four nations** — full 12-period trajectories for UK / England / NI / Scotland / Wales.
 5. **NI 25–49 prevalence vs the rest of the UK** — full 12-period series, by sex.
 6. **NI HLE at birth: ONS (APS-based) vs DoH NI (HSNI-based)** — cross-survey validation.
+7. **Deprivation gradient (England 10 deciles, Wales 5 quintiles)** — HLE by IMD/WIMD decile/quintile, 2013–15 vs 2022–24, plus per-decile change. Shows the headline 2-year fall against the within-population gradient.
 
 ## Methodology in brief
 
