@@ -27,11 +27,10 @@ Charts in the dashboard:
 
 ## Key findings
 
-1. The largest single negative contribution to HLE at birth comes from the **25–49 working-age band** (UK Male −0.95 yrs, Female −1.24 yrs). This matches the age signature [Tetzlaff et al. (Eur J Public Health 2026)](https://academic.oup.com/eurpub/article-pdf/36/3/ckag059/68087747/ckag059.pdf) reported for Germany.
-2. Two countries with very different health systems show the same age signature, which makes a UK-specific NHS-performance explanation harder to sustain.
-3. **NI is the diagnostic case.** Despite the worst service-performance metrics in the UK across this decade, NI's HLE-at-birth fall was the *most modest* of the four nations. This contradicts a "HLE tracks NHS performance" reading. But NI also has the highest rate of working-age economic inactivity due to long-term sickness (10.1% vs 6.6% UK-wide), which contradicts the "NI is healthier" reading. The contradiction itself is the interesting part.
-4. **Two independent surveys (ONS APS and DoH NI HSNI) give the same NI pattern**: small male fall, larger female fall, absolute levels within ~1.5 yrs. Cross-instrument validation strengthens the finding.
-5. **Mental health is plausibly part of the SRH signal.** The Adult Psychiatric Morbidity Survey shows common mental health conditions in 16–24 year olds rose from 17.5% (2007) to 25.8% (2023/24). UKHLS GHQ data show the steepest rise in 16–18s and the economically inactive. Blanchflower et al. (NBER 2024) argue the U-shaped age curve of mental ill-being has flattened or inverted in the UK.
+1. The largest single negative contribution to HLE at birth comes from the **25–49 working-age band** (UK Male −0.95 yrs, Female −1.24 yrs). This matches the age pattern [Tetzlaff et al. (Eur J Public Health 2026)](https://academic.oup.com/eurpub/article-pdf/36/3/ckag059/68087747/ckag059.pdf) reported for Germany — younger working-age health driving the fall, older working-age health stable or improving.
+2. **NI has the smallest HLE-at-birth fall of the four UK nations.** It also has the highest rate of working-age economic inactivity due to long-term sickness (10.1% vs 6.6% UK-wide). The two findings sit alongside each other and don't yet add up to a coherent story.
+3. **Two independent surveys (ONS APS and DoH NI HSNI) give the same NI pattern**: small male fall, larger female fall, absolute levels within ~1.5 yrs. Cross-instrument validation strengthens the finding.
+4. **Mental health is plausibly part of the SRH signal.** The Adult Psychiatric Morbidity Survey shows common mental health conditions in 16–24 year olds rose from 17.5% (2007) to 25.8% (2023/24). UKHLS GHQ data show the steepest rise in 16–18s and the economically inactive. Blanchflower et al. (NBER 2024) argue the U-shaped age curve of mental ill-being has flattened or inverted in the UK.
 
 ## Files
 
