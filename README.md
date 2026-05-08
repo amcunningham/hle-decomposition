@@ -6,7 +6,7 @@ An interactive decomposition of the UK ONS *Healthy Life Expectancy* release of 
 
 ## What it does
 
-UK healthy life expectancy at birth fell by roughly 2–3 years between 2012–14 and 2022–24. The published ONS figures don't tell you which age groups drove the fall. This page does the missing decomposition: for each constituent country, it apportions the observed change in HLE at birth across life-stage bands, holding mortality at 2022–24 levels.
+UK healthy life expectancy at birth fell by roughly 2–3 years between 2012–14 and 2022–24. The [Health Foundation's watershed paper](https://www.health.org.uk/reports-and-analysis/analysis/healthy-life-expectancy-trends-in-the-uk-a-watershed-moment) flagged the 25–49 working-age band via a counterfactual, but a full age-band decomposition hasn't been published. This page fills that gap: for each constituent country, it apportions the observed change in HLE at birth across life-stage bands, holding mortality at 2022–24 levels.
 
 Charts in the dashboard:
 
